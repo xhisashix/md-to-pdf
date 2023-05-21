@@ -16,8 +16,22 @@
       {
         "command": "md-to-pdf.export",
         "title": "markdown to pdf"
+      },
+      {
+        "command": "md-to-pdf.createFile",
+        "title": "create file"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "markdown to pdf",
+      "properties": {
+        "cssPath": {
+          "type": "string",
+          "default": "./css/styles.css",
+          "description": "css file path"
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",

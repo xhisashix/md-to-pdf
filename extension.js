@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 const markdown_pdf = require("markdown-pdf");
+const path = require("path");
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -28,18 +29,48 @@ function activate(context) {
       // Get file name
       const file = editor.document.fileName.split(".")[0];
       // generate pdf
-      markdown_pdf()
-        .from.string(editor.document.getText())
+      markdown_pdf({})
+        .from(file + ".md")
         .to(file + ".pdf", function () {
           console.log("Done");
         });
 
       // Display a message box to the user
-      vscode.window.showInformationMessage("Hello World from md-to-pdf!");
+      vscode.window.showInformationMessage("Exported to " + file + ".pdf");
+    }
+  );
+
+  let createFile = vscode.commands.registerCommand(
+    "md-to-pdf.createFile",
+    function () {
+      // Create markdown file
+      vscode.window.showInputBox({ prompt: "File name" }).then((value) => {
+        var createFileName = "";
+        if (value) {
+          createFileName = `# ${value}`;
+        } else {
+          // 現在時刻を取得してファイル名にする
+          const date = new Date();
+          const year = date.getFullYear();
+          const month = date.getMonth() + 1;
+          const day = date.getDate();
+
+          createFileName = `# ${year}-${month}-${day}`;
+        }
+        vscode.workspace
+          .openTextDocument({
+            content: createFileName,
+            language: "markdown",
+          })
+          .then((doc) => {
+            vscode.window.showTextDocument(doc);
+          });
+      });
     }
   );
 
   context.subscriptions.push(disposable);
+  context.subscriptions.push(createFile);
 }
 
 // This method is called when your extension is deactivated

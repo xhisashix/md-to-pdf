@@ -1,0 +1,10 @@
+{
+  "markdown-pdf.styles": [
+    "/Users/hisashi/Documents/vscode-extentions/md-to-pdf/css/styles.css"
+  ],
+  "markdown-pdf.highlightStyle": "monokai.css",
+  "markdown-pdf.type": [
+    "pdf",
+    "html"
+  ]
+}

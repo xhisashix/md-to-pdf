@@ -1,0 +1,27 @@
+h1 {
+  border: none;
+}
+
+h2 {
+  padding-bottom: 0.3em;
+  line-height: 0.9;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #DDD
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #DDD;
+}
+
+td,
+th {
+  border: 1px solid #DDD;
+  padding: 0.5em;
+}
+
+th {
+  background-color: #EEE;
+}
